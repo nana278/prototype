@@ -23,4 +23,17 @@ X = np.random.rand(100,10)
 y = np.random.randint(0, 2, 100)
 
 #学習用データとテスト用データに分割
-X_train, X_test, y_train, y_test = train_test_split(X, y,
+X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.2, random_state=42)
+
+#モデルをつくる
+model = RandomForestClassifier(n_estimators=100)
+
+#学習
+model.fit(X_train, y_train)
+
+#予測
+y_pred = model.predict(X_test)
+
+#制度を表示
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
